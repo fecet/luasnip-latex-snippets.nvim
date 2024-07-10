@@ -123,8 +123,8 @@ M.setup_markdown = function()
 
   -- tex delimiters
   local normal_wA_tex = {
-    parse_snippet({ trig = "mk", name = "Math" }, "$${1:${TM_SELECTED_TEXT}}$"),
-    parse_snippet({ trig = "dm", name = "Block Math" }, "$$\n\t${1:${TM_SELECTED_TEXT}}\n.$$"),
+    parse_snippet({ trig = "kk", name = "Math" }, "$${1:${TM_SELECTED_TEXT}}$"),
+    parse_snippet({ trig = "mm", name = "Block Math" }, "$$\n\t${1:${TM_SELECTED_TEXT}}\n$$"),
   }
   vim.list_extend(filtered, normal_wA_tex)
 

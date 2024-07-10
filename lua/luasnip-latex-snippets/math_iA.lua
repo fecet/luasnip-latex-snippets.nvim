@@ -18,6 +18,18 @@ function M.retrieve(is_math)
   return {
     s(
       {
+        trig = "(%a)bf",
+        wordTrig = false,
+        regTrig = true,
+        name = "mathbf",
+        priority = 100,
+      },
+      f(function(_, snip)
+        return string.format("\\mathbf{%s}", snip.captures[1])
+      end, {})
+    ),
+    s(
+      {
         trig = "(%a+)bar",
         wordTrig = false,
         regTrig = true,
@@ -94,9 +106,12 @@ function M.retrieve(is_math)
     parse_snippet({ trig = "rd", name = "to the ... power ^{()}" }, "^{($1)}$0 "),
     parse_snippet({ trig = "cb", name = "Cube ^3" }, "^3 "),
     parse_snippet({ trig = "sr", name = "Square ^2" }, "^2"),
+    parse_snippet({ trig = "ge", name = ">=" }, "\\ge "),
+    parse_snippet({ trig = "le", name = "<=" }, "\\le "),
 
-    parse_snippet({ trig = "EE", name = "exists" }, "\\exists "),
-    parse_snippet({ trig = "AA", name = "forall" }, "\\forall "),
+    parse_snippet({ trig = "11", name = "indicator" }, "\\mathbf{1}"),
+    parse_snippet({ trig = "ee", name = "exists" }, "\\exists "),
+    parse_snippet({ trig = "aa", name = "forall" }, "\\forall "),
     parse_snippet({ trig = "xnn", name = "xn" }, "x_{n}"),
     parse_snippet({ trig = "ynn", name = "yn" }, "y_{n}"),
     parse_snippet({ trig = "xii", name = "xi" }, "x_{i}"),
@@ -152,15 +167,18 @@ function M.retrieve(is_math)
     parse_snippet({ trig = "RR", name = "R" }, "\\mathbb{R}"),
     parse_snippet({ trig = "QQ", name = "Q" }, "\\mathbb{Q}"),
     parse_snippet({ trig = "ZZ", name = "Z" }, "\\mathbb{Z}"),
-    parse_snippet({ trig = "UU", name = "cup" }, "\\cup "),
+    parse_snippet({ trig = "cup", name = "cup" }, "\\cup"),
     parse_snippet({ trig = "NN", name = "n" }, "\\mathbb{N}"),
     parse_snippet({ trig = "||", name = "mid" }, " \\mid "),
-    parse_snippet({ trig = "Nn", name = "cap" }, "\\cap "),
+    parse_snippet({ trig = "cap", name = "cap" }, "\\cap "),
     parse_snippet({ trig = "bmat", name = "bmat" }, "\\begin{bmatrix} $1 \\end{bmatrix} $0"),
     parse_snippet({ trig = "uuu", name = "bigcup" }, "\\bigcup_{${1:i \\in ${2: I}}} $0"),
     parse_snippet({ trig = "DD", name = "D" }, "\\mathbb{D}"),
     parse_snippet({ trig = "HH", name = "H" }, "\\mathbb{H}"),
     parse_snippet({ trig = "lll", name = "l" }, "\\ell"),
+    parse_snippet({ trig = "EE", name = "Expecation" }, "\\mathop{{}\\mathbb{E}}_{$1}$0"),
+    parse_snippet({ trig = "PP", name = "Probability" }, "\\mathop{{}\\mathbb{P}}"),
+    parse_snippet({ trig = "mpt", name = "mapsto" }, "\\mapsto "),
     parse_snippet(
       { trig = "dint", name = "integral", priority = 300 },
       "\\int_{${1:-\\infty}}^{${2:\\infty}} ${3:${TM_SELECTED_TEXT}} $0"
@@ -180,6 +198,9 @@ function M.retrieve(is_math)
     parse_snippet({ trig = "invs", name = "inverse" }, "^{-1}"),
     parse_snippet({ trig = "~~", name = "~" }, "\\sim "),
     parse_snippet({ trig = "conj", name = "conjugate" }, "\\overline{$1}$0"),
+
+    parse_snippet({ trig = "dd", name = "d" }, " \\mathrm{\\ d}"),
+    parse_snippet({ trig = "mrm", name = "mathrm" }, "\\mathrm{$1}$0"),
   }
 end
 
