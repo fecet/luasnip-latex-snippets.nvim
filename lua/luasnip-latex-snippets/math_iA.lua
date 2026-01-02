@@ -125,6 +125,8 @@ function M.retrieve(is_math)
     parse_snippet({ trig = "notin", name = "not in " }, "\\not\\in "),
 
     parse_snippet({ trig = "cc", name = "subset" }, "\\subset "),
+    parse_snippet({ trig = "ceq", name = "subset" }, "\\subseteq "),
+    parse_snippet({ trig = "cqq", name = "subset" }, "\\subseteqq "),
 
     parse_snippet({ trig = "<->", name = "leftrightarrow", priority = 200 }, "\\leftrightarrow"),
     parse_snippet({ trig = "...", name = "ldots", priority = 100 }, "\\ldots "),
